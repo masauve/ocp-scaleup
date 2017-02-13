@@ -47,10 +47,7 @@
         ocp_etcd: "{{ ocp_etcd }}"
     register: ec2node
 
-  - name: Waiting for the instance to come
-    local_action:
-      module: wait_for
-        host="{{ec2node.instances[0].public_ip}}" 
-        port=22
-        delay=5
-        timeout=300
+  - name: add host to inventory
+    add_host:
+      hostname: "{{ instance1_public_ip }}"
+      groups: ready
