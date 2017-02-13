@@ -31,6 +31,7 @@
       image: "{{ami_id}}"
       group_id: "{{ocp_security_group.group_id}}"
       key_name: "{{key_name}}"
+      assign_public_ip: true
       volumes:
         - device_name: /dev/sda1
           volume_size: 50
@@ -46,9 +47,9 @@
     register: ec2node
 
   - name: Waiting for the instance to come
-    local_action: 
+    local_action:
       module: wait_for
-        host="{{ec2node.instances[0].private_ip}}" 
+        host="{{ec2node.instances[0].public_ip}}" 
         port=22
-        delay=10
+        delay=5
         timeout=1800
