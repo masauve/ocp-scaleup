@@ -45,6 +45,7 @@
         ocp_master: "{{ ocp_master }}"
         ocp_node: "{{ ocp_node }}"
         ocp_etcd: "{{ ocp_etcd }}"
+        ready_for_provisionning: true
     register: ec2node
 
   - name: add host to inventory
