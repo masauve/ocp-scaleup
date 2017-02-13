@@ -17,7 +17,6 @@
       description: "allow all traffic"
       region: "{{aws_region}}"
       vpc_id: "{{vpc_id}}"
-      vpc_subnet_id: "{{vpc_subnet_id}}"
       rules:
         - proto: tcp
           from_port: 0
@@ -30,6 +29,7 @@
       instance_type: m4.2xlarge
       region: "{{aws_region}}"
       image: "{{ami_id}}"
+      vpc_subnet_id: "{{vpc_subnet_id}}"
       group_id: "{{ocp_security_group.group_id}}"
       key_name: "{{key_name}}"
       assign_public_ip: true
