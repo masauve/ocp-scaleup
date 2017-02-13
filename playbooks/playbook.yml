@@ -43,7 +43,7 @@
         ocp_master: "{{ ocp_master }}"
         ocp_node: "{{ ocp_node }}"
         ocp_etcd: "{{ ocp_etcd }}"
-      register: ec2
+    register: ec2
 
   - name: Waiting for the instance to come
     local_action: wait_for
