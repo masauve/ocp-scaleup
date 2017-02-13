@@ -49,5 +49,5 @@
 
   - name: add host to inventory
     add_host:
-      hostname: "{{ instance1_public_ip }}"
+      hostname: "{{ ec2node.instances[0].public_ip }}"
       groups: ready
