@@ -17,6 +17,7 @@
       description: "allow all traffic"
       region: "{{aws_region}}"
       vpc_id: "{{vpc_id}}"
+      vpc_subnet_id: "{{vpc_subnet_id}}"
       rules:
         - proto: tcp
           from_port: 0
@@ -52,4 +53,4 @@
         host="{{ec2node.instances[0].public_ip}}" 
         port=22
         delay=5
-        timeout=1800
+        timeout=300
