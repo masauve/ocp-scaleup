@@ -86,3 +86,13 @@
   
   - name: Clean Docker Data         
     command: rm -rf /var/lib/docker/*
+
+  - name: Ensure all instances are tagged
+    ec2_tag:
+      region: '{{ aws_region }}'
+      resource: '{{ item.id }}'
+      state: present
+      tags:
+        ready_for_provisionning: done
+    with_subelements:
+      - instances
