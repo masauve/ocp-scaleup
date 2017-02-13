@@ -11,8 +11,6 @@
       region: "{{aws_region}}"
     register: subnet_ids
 
-  - debug: var=subnet_ids verbosity=5
-
   - name: create a security group
     ec2_group:
       name: allow_all
@@ -25,7 +23,7 @@
           to_port: 60000
           cidr_ip: 0.0.0.0/0
     register: ocp_security_group
-  - debug: var=instance_name
+
   - name: launch an ec2 instance
     ec2:
       instance_type: m4.2xlarge
@@ -45,4 +43,3 @@
         ocp_master: "{{ ocp_master }}"
         ocp_node: "{{ ocp_node }}"
         ocp_etcd: "{{ ocp_etcd }}"
-      state: running
