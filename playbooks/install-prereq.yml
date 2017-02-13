@@ -58,7 +58,7 @@
       dest: /etc/sysconfig/docker-storage-setup
       create: yes
       content: |
-        DEVS={{ docker_storage_mount}}
+        DEVS={{docker_storage_mount}}
         VG=docker-vg
     register: dockerStorageConfigFileCreated
     notify:
