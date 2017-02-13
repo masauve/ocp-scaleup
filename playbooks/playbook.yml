@@ -33,6 +33,16 @@
       image: "{{ami_id}}"
       group_id: "{{ocp_security_group.group_id}}"
       key_name: "{{key_name}}"
+      volumes:
+        - device_name: /dev/sda1
+          volume_size: 50
+          volume_type: gp2
+        - device_name: /dev/sdb
+          volume_size: 20
+          volume_type: gp2
       instance_tags:
         Name: "{{ instance_name }}"
+        ocp_master: "{{ ocp_master }}"
+        ocp_node: "{{ ocp_node }}"
+        ocp_etcd: "{{ ocp_etcd }}"
       state: running
