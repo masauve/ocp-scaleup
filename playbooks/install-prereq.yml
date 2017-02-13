@@ -45,7 +45,7 @@
     yum: name=docker state=installed update_cache=yes
     register: dockerInstalled
     notify:
-    - Start Docker
+    - Clean Docker Data
 
   - meta: flush_handlers
 
@@ -58,12 +58,9 @@
       dest: /etc/sysconfig/docker-storage-setup
       create: yes
       content: |
-        DEVS={{docker_storage_mount}}
+        DEVS=/dev/{{docker_storage_mount}}
         VG=docker-vg
     register: dockerStorageConfigFileCreated
-    notify:
-    - Stop Docker
-    - Clean Docker Data
 
   - meta: flush_handlers
 
@@ -76,8 +73,6 @@
     command: docker-storage-setup 
     register: dockerStorageSetupComplete 
     notify: 
-    - Stop Docker
-    - Clean Docker Data
     - Start Docker
 
  
