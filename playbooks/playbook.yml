@@ -33,3 +33,6 @@
       image: "{{ami_id}}"
       group_id: "{{ocp_security_group.group_id}}"
       key_name: "{{key_name}}"
+      instance_tags:
+	Name: "{{instance_name}}"
+      state: running
