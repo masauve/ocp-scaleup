@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  - include: playbook.yml
+  - pause:
+      minutes: 2
+  - include: install-prereq.yml
+
+
