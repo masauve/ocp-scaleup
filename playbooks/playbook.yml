@@ -44,6 +44,7 @@
         Name: "{{ instance_name }}"
         ocp_master: "{{ ocp_master }}"
         ocp_node: "{{ ocp_node }}"
+        ocp_new_node: "{{ ocp_new_node }}"
         ocp_etcd: "{{ ocp_etcd }}"
         ready_for_provisionning: true
     register: ec2node
