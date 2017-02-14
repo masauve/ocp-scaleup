@@ -49,9 +49,10 @@
         ready_for_provisionning: "True"
     register: ec2node
 
-  - debug:
-    var: ec2node
-    verbosity: 0
+  - name: debug ec2
+    debug:
+      var: ec2node
+      verbosity: 0
 
   - name: connect to Tower
     command: "tower-cli config {{ item }}"
