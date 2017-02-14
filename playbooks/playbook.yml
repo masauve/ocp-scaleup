@@ -49,6 +49,8 @@
         ready_for_provisionning: "True"
     register: ec2node
 
+  - debug :
+    var: ec2node
   - name: create host in Tower
     command: "tower-cli host create -n {{ec2node.instances[0].public_ip}} -i 7"
 
