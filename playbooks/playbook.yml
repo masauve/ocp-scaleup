@@ -75,6 +75,18 @@
      - ocp_master == True
     delegate_to: localhost
 
+  - name: associate host to nfs group in Tower
+    command: "tower-cli host associate --host {{ansible_ec2_public_ipv4}} --group 359"
+    when:
+     - ocp_nfs == True
+    delegate_to: localhost
+
+  - name: associate host to etcd group in Tower
+    command: "tower-cli host associate --host {{ansible_ec2_public_ipv4}} --group 358"
+    when:
+     - ocp_etcd == True
+    delegate_to: localhost
+
   - name: associate host to node group in Tower
     command: "tower-cli host associate --host {{ansible_ec2_public_ipv4}} --group 360"
     when:
@@ -82,7 +94,7 @@
     delegate_to: localhost
 
   - name: associate host to new_node group in Tower
-    command: "tower-cli host associate --host {{ansible_ec2_public_ipv4}} --group 361"
+    command: "tower-cli host associate --host {{ansible_ec2_public_ipv4}} --group 502"
     when:
      - ocp_new_node == True
     delegate_to: localhost
