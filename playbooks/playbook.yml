@@ -50,7 +50,7 @@
     register: ec2node
 
   - name: connect to Tower
-    command: "tower-cli config {{ item }}
+    command: "tower-cli config {{ item }}"
     with_items:
       - username {{ tower_user }}
       - password {{ tower_password }}
