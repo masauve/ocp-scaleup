@@ -48,7 +48,7 @@
         ocp_new_node: "{{ ocp_new_node }}"
         ocp_etcd: "{{ ocp_etcd }}"
         ready_for_provisionning: "True"
-    register: ec2_info
+    register: ec2
 
   - name: connect to Tower
     command: "tower-cli config {{ item }}"
@@ -60,47 +60,39 @@
 
   - name: create host in Tower debug
     debug: 
-       var: item 
+       var: ec2.instances 
        verbosity: 0
-    with_items: ec2_info.instances
-    delegate_to: localhost
 
   - name: create host in Tower
     command: "tower-cli host create -n {{ item.public_ip }} -i 7"
-    with_items: ec2_info.instances
-    delegate_to: localhost
+    with_items: ec2.instances
 
   - name: associate host to master group in Tower
     command: "tower-cli host associate --host {{ item.public_ip }} --group 357"
-    with_items: ec2_info.instances
+    with_items: ec2.instances
     when:
      - ocp_master == True
-    delegate_to: localhost
 
   - name: associate host to nfs group in Tower
     command: "tower-cli host associate --host {{ item.public_ip }} --group 359"
-    with_items: ec2_info.instances
+    with_items: ec2.instances
     when:
      - ocp_nfs == True
-    delegate_to: localhost
 
   - name: associate host to etcd group in Tower
     command: "tower-cli host associate --host {{ item.public_ip }} --group 358"
-    with_items: ec2_info.instances
+    with_items: ec2.instances
     when:
      - ocp_etcd == True
-    delegate_to: localhost
 
   - name: associate host to node group in Tower
     command: "tower-cli host associate --host {{ item.public_ip }} --group 360"
-    with_items: ec2_info.instances
+    with_items: ec2.instances
     when:
      - ocp_node == True
-    delegate_to: localhost
 
   - name: associate host to new_node group in Tower
     command: "tower-cli host associate --host {{ item.public_ip }} --group 502"
-    with_items: ec2_info.instances
+    with_items: ec2.instances
     when:
      - ocp_new_node == True
-    delegate_to: localhost
