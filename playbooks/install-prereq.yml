@@ -75,11 +75,3 @@
   service: name=docker state=started enabled=yes
  
 - meta: flush_handlers
-
-handlers:
-  
-- name: Stop Docker
-  service: name=docker state=stopped 
-  
-- name: Clean Docker Data         
-  command: rm -rf /var/lib/docker/*

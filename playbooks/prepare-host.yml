@@ -8,4 +8,11 @@
       minutes: 2
   - include: install-prereq.yml
 
+  handlers:
+  - name: Stop Docker
+    service: name=docker state=stopped
+
+  - name: Clean Docker Data
+    command: rm -rf /var/lib/docker/*
+
 
