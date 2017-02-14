@@ -51,7 +51,7 @@
 
   - debug:
     var: ec2node
-    verbosity: 1
+    verbosity: 0
 
   - name: connect to Tower
     command: "tower-cli config {{ item }}"
