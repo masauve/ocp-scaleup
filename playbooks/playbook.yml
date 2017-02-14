@@ -49,10 +49,13 @@
         ready_for_provisionning: "True"
     register: ec2node
 
-  - name: debug ec2
-    debug:
-      var: ec2node
-      verbosity: 0
+  - name: pause 30 seconds
+    pause:
+      seconds: 30
+
+  - name: get ec2 facts
+    ec2_facts:
+    
 
   - name: connect to Tower
     command: "tower-cli config {{ item }}"
