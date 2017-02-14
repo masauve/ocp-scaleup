@@ -49,7 +49,28 @@
         ready_for_provisionning: "True"
     register: ec2node
 
-  - name: add host to inventory
-    add_host:
-      hostname: "{{ ec2node.instances[0].public_ip }}"
-      groups: ready
+  - name: create host in Tower
+    command: "tower-cli host create -n {{ec2node.instances[0].public_ip}} -i 7"
+
+  - name: associate host to master group in Tower
+    command: "tower-cli host associate --host {{ec2node.instances[0].public_ip}} --group {{item}}"
+    with_items:
+    - 357
+    - 358
+    - 359
+    when:
+     - ocp_master == True
+
+  - name: associate host to node group in Tower
+    command: "tower-cli host associate --host {{ec2node.instances[0].public_ip}} --group {{item}}"
+    with_items:
+    - 360
+    when:
+     - ocp_node == True
+
+  - name: associate host to new_node group in Tower
+    command: "tower-cli host associate --host {{ec2node.instances[0].public_ip}} --group {{item}}"
+    with_items:
+    - 361
+    when:
+     - ocp_new_node == True
