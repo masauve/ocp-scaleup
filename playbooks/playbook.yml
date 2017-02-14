@@ -1,6 +1,5 @@
 ---
 
-tasks:  
 - name: find a subnet id
   ec2_vpc_subnet_facts:
    region: "{{aws_region}}"

@@ -1,6 +1,5 @@
 ---
 
-tasks:
 - name: Force unregister before register
   redhat_subscription:
     state: absent
