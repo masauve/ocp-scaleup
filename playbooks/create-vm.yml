@@ -4,6 +4,7 @@
   hosts: localhost
   connection: local
   gather_facts: false
+  become: true
   tasks:
 
   - name: find a subnet id
