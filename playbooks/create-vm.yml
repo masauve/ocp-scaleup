@@ -95,7 +95,7 @@
     add_host:
        name: "{{ec2.instances[0].public_ip}}"
 
-- name: Force unregister before register
+  - name: Force unregister before register
     redhat_subscription:
       state: absent
     ignore_errors: true
