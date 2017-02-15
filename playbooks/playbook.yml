@@ -64,29 +64,29 @@
        verbosity: 0
 
   - name: create host in Tower
-    command: "tower-cli host create -n {{ec2.instances[0].public_ip}} -i 7"
+    command: "tower-cli host create -n {{ec2.instances[0].public_ip}} -i 2"
 
   - name: associate host to master group in Tower
-    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 357"
+    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 1"
     when:
      - ocp_master == True
 
   - name: associate host to nfs group in Tower
-    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 359"
+    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 3"
     when:
      - ocp_nfs == True
 
   - name: associate host to etcd group in Tower
-    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 358"
+    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 4"
     when:
      - ocp_etcd == True
 
   - name: associate host to node group in Tower
-    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 360"
+    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 2"
     when:
      - ocp_node == True
 
   - name: associate host to new_node group in Tower
-    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 502"
+    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 5"
     when:
      - ocp_new_node == True
