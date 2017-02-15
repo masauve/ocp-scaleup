@@ -126,9 +126,6 @@
     with_items:
     - wget
     - vim-enhanced
-    with_items:
-    - wget
-    - vim-enhanced
     - net-tools
     - bind-utils
     - git
