@@ -66,12 +66,6 @@
   - name: create host in Tower
     command: "tower-cli host create -n {{ec2.instances[0].public_ip}} -i 2"
 
-  - name: create host in Tower
-    command: "tower-cli host create -n {{ec2.instances[0].public_ip}} -i 3"
-
-  - name: associate host to AWS group in Tower
-    command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 6"
-
   - name: associate host to master group in Tower
     command: "tower-cli host associate --host {{ec2.instances[0].public_ip}} --group 1"
     when:
